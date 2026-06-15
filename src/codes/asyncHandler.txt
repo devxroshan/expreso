@@ -1,0 +1,39 @@
+import express from "express";
+
+export interface IResponse {
+  msg: string;
+  statusCode?: number;
+  data?: any;
+}
+
+type TController = (
+  req: express.Request,
+  res: express.Response,
+) => Promise<void | IResponse>;
+
+export const asyncHandler = (fn: TController) => {
+  return (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ): void => {
+    Promise.resolve(fn(req, res))
+      .then((value) => {
+        if (res.headersSent) return;
+        else if (value) {
+          const { msg, data, statusCode = 200 } = value;
+          res.status(statusCode).json({
+            ok: true,
+            msg,
+            data,
+          });
+        } else {
+          res.status(200).json({
+            ok: true,
+            msg: "Default controller response.",
+          });
+        }
+      })
+      .catch(next);
+  };
+};

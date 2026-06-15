@@ -1,0 +1,21 @@
+import express from "express";
+import { HttpException } from "../config/http-exceptions.config.js";
+import { httpExceptionFilter } from "./http-exception.filter.js";
+
+export const allExceptionFilter = (
+  err: any,
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
+  if (err instanceof HttpException) return httpExceptionFilter(err, req, res);
+  else {
+    res.status(500).json({
+      ok: false,
+      msg: "Unknown error occurred. Try again later.",
+      data: {},
+      path: req.url,
+      timestamp: new Date().toISOString(),
+    });
+  }
+};

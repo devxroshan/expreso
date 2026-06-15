@@ -1,0 +1,76 @@
+export class HttpException extends Error {
+  constructor(
+    private statusCode: number,
+    private msg: string,
+    private details = null,
+  ) {
+    super(msg);
+    this.name = this.constructor.name;
+    this.statusCode = statusCode;
+    this.details = details;
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+}
+
+export class BadRequestException extends HttpException {
+  constructor(msg = "Bad Request", details = null) {
+    super(400, msg, details);
+  }
+}
+
+export class UnauthorizedException extends HttpException {
+  constructor(msg = "Unauthorized", details = null) {
+    super(401, msg, details);
+  }
+}
+
+export class ForbiddenException extends HttpException {
+  constructor(msg = "Forbidden", details = null) {
+    super(403, msg, details);
+  }
+}
+
+export class NotFoundException extends HttpException {
+  constructor(msg = "Not Found", details = null) {
+    super(404, msg, details);
+  }
+}
+
+export class MethodNotAllowedException extends HttpException {
+  constructor(msg = "Method Not Allowed", details = null) {
+    super(405, msg, details);
+  }
+}
+
+export class ConflictException extends HttpException {
+  constructor(msg = "Conflict", details = null) {
+    super(409, msg, details);
+  }
+}
+
+export class UnprocessableEntityException extends HttpException {
+  constructor(msg = "Unprocessable Entity", details = null) {
+    super(422, msg, details);
+  }
+}
+
+export class TooManyRequestsException extends HttpException {
+  constructor(msg = "Too Many Requests", details = null) {
+    super(429, msg, details);
+  }
+}
+
+export class InternalServerErrorException extends HttpException {
+  constructor(msg = "Internal Server Error", details = null) {
+    super(500, msg, details);
+  }
+}
+
+export class ServiceUnavailableException extends HttpException {
+  constructor(msg = "Service Unavailable", details = null) {
+    super(503, msg, details);
+  }
+}

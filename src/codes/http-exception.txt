@@ -1,0 +1,15 @@
+import express from "express";
+
+export const httpExceptionFilter = (
+  err: any,
+  req: express.Request,
+  res: express.Response,
+) => {
+  res.status(err.statusCode).json({
+    msg: err.msg,
+    detials: err.details,
+    ok: false,
+    path: req.url,
+    timestamp: new Date().toISOString(),
+  });
+};
