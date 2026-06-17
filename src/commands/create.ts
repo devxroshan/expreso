@@ -68,5 +68,10 @@ export const create = async (name: string) => {
 
   await runCommand("npm", ["install"], rootPath);
 
+  if (projectOptions.database === UserSelections.POSTGRESQL_WITH_PRISMA) {
+    await runCommand("npx", ["prisma", "init"], rootPath);
+    await runCommand("npx", ["prisma", "generate"], rootPath);
+  }
+
   console.log("Project created successfully.🚀🚀🚀");
 };
