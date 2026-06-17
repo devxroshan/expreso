@@ -1,9 +1,8 @@
 import fs from "fs/promises";
 
-const controllerFileStarterCode = `import express from "express";\nimport { asyncRequestHandler } from "../../utils/asyncRequestHandler.ts";`;
+const controllerFileStarterCode = `import express from "express";\nimport { asyncRequestHandler } from "../../utils/asyncRequestHandler.js";`;
 
-const routerFileStarterCode = `
-import express from "express";
+const routerFileStarterCode = `import express from "express";
 
 const router = express.Router();
 
@@ -19,7 +18,7 @@ export const generateModule = async (name: string) => {
 
   console.log(`Creating ${name} module....`);
 
-  const modulePath = `${process.cwd()}/modules/${name}`;
+  const modulePath = `${process.cwd()}/src/modules/${name}`;
 
   await fs.mkdir(modulePath, { recursive: true });
   await fs.mkdir(`${modulePath}/dto`, { recursive: true });

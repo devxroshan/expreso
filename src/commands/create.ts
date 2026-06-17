@@ -23,7 +23,8 @@ export const create = async (name: string) => {
 
   if (projectOptions.database == UserSelections.MONGODB_WITH_MONGOOSE) {
     const templatePath = path.join(
-      process.cwd(),
+      "expreso",
+      "dist",
       "templates",
       "backend_with_mongo",
     );
@@ -35,7 +36,8 @@ export const create = async (name: string) => {
     });
   } else {
     const templatePath = path.join(
-      process.cwd(),
+      "expreso",
+      "dist",
       "templates",
       "backend_with_prisma_postgres",
     );
