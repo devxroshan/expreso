@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { ECommand, runCLI, type IInstruction } from "./cli.js";
 import { create } from "./commands/create.js";
 import { generateModule } from "./commands/generateModule.js";

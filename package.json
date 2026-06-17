@@ -1,5 +1,5 @@
 {
-  "name": "expreso",
+  "name": "expresify",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/devxroshan/expreso.git"
   },
+  "bin": {
+    "expresify": "./dist/app.js"
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
