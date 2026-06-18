@@ -64,6 +64,8 @@ export const create = async (name: string) => {
     JSON.stringify(jsonPackageContent),
   );
 
+  console.log("Installing packages....")
+
   if (projectOptions.passwordHashingTool == UserSelections.ARGON) {
     await runCommand("npm", ["i", "argon2"], rootPath);
   } else {
