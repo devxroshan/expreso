@@ -1,5 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
+import { fileURLToPath } from "url";
+
 import { userChoices } from "../utils/userChoices.js";
 import {
   createChoices,
@@ -7,6 +9,9 @@ import {
   type IChoice,
 } from "../config/create-choices.js";
 import { runCommand } from "../utils/executeCommand.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const create = async (name: string) => {
   if (!name) {
@@ -23,8 +28,8 @@ export const create = async (name: string) => {
 
   if (projectOptions.database == UserSelections.MONGODB_WITH_MONGOOSE) {
     const templatePath = path.join(
-      "expresify",
-      "templates",
+      __dirname,
+      "../../templates",
       "backend_with_mongo",
     );
 
@@ -35,8 +40,8 @@ export const create = async (name: string) => {
     });
   } else {
     const templatePath = path.join(
-      "expresify",
-      "templates",
+      __dirname,
+      "../../templates",
       "backend_with_prisma_postgres",
     );
 
