@@ -1,8 +1,8 @@
 {
   "name": "expresify",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
-  "main": "app.js",
+  "main": "./dist/app.js",
   "scripts": {
     "build": "npx tsc"
   },
